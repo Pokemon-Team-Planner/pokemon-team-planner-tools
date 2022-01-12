@@ -1,0 +1,15 @@
+{
+  "name": "pokemon-team-builder-tools",
+  "version": "0.0.1",
+  "description": "Tools for Pokemon Team Builder",
+  "main": "dataExporter.js",
+  "scripts": {
+    "start": "node ./dataExporter.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antti Alestalo",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
