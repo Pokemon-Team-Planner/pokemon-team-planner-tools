@@ -42,5 +42,15 @@ const exportDataRange = async (firstId, lastId, arrayExclusives, filename) => {
   console.log('done')
 }
 
-//exportDataRange(1, 151, fireRedExclusives, './out/firered-pokedex.json')
-exportDataRange(1, 151, leafGreenExclusives, './out/leafgreen-pokedex.json')
+async function main() {
+  //Best to run these in async since PokeAPI seems to throttle parallel requests
+  await exportDataRange(1, 151, fireRedExclusives, './out/firered-pokedex.json')
+  await exportDataRange(1, 151, leafGreenExclusives, './out/leafgreen-pokedex.json')
+}
+
+//Run main if this file was run directly from Node.js
+if (require.main === module) {
+  main();
+}
+
+module.exports = { exportDataRange }
