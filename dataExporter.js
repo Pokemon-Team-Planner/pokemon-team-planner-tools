@@ -4,6 +4,7 @@ const fireRedExclusives = require('./data/fireRedExclusives.json')
 const leafGreenExclusives = require('./data/leafGreenExclusives.json')
 
 const exportDataRange = async (firstId, lastId, arrayExclusives, filename) => {
+  console.log(`fetching pokemon ${firstId} to ${lastId}...`)
   const data = await pokemonService.getRange(firstId, lastId)
   console.log('pokemon data received')
 
