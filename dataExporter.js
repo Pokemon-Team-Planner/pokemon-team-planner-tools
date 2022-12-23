@@ -1,5 +1,5 @@
 const pokemonService = require('./services/pokemon')
-const fs = require('fs')
+const { writeFile } = require('fs/promises')
 const fireRedExclusives = require('./data/fireRedExclusives.json')
 const leafGreenExclusives = require('./data/leafGreenExclusives.json')
 
@@ -35,12 +35,12 @@ const exportDataRange = async (firstId, lastId, arrayExclusives, filename) => {
     return {id: pokemon.id, name: pokemon.name, types, sprite: pokemon.sprites.front_default, base_stats, is_exclusive: isExclusive(arrayExclusives)}
   })
 
-  fs.writeFile(filename, JSON.stringify(dataSetExport, null, 2), (err) => {
-    if (err) {
-        console.log(err);
-    }
-  })
-  console.log('done')
+  try {
+    await writeFile(filename, JSON.stringify(dataSetExport, null, 2))
+    console.log(`wrote to ${filename}`)
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 async function main() {
