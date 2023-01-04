@@ -3,7 +3,18 @@ const { writeFile } = require('fs/promises')
 const fireRedExclusives = require('./data/fireRedExclusives.json')
 const leafGreenExclusives = require('./data/leafGreenExclusives.json')
 
-const exportDataRange = async (firstId, lastId, arrayExclusives, filename) => {
+async function main() {
+  //Best to run these in async since PokeAPI seems to throttle parallel requests
+  await exportDataRange(1, 151, fireRedExclusives, './out/firered-pokedex.json')
+  await exportDataRange(1, 151, leafGreenExclusives, './out/leafgreen-pokedex.json')
+}
+
+//Run main if this file was run directly from Node.js
+if (require.main === module) {
+  main();
+}
+
+async function exportDataRange (firstId, lastId, arrayExclusives, filename) {
   console.log(`fetching pokemon ${firstId} to ${lastId}...`)
   const data = await pokemonService.getRange(firstId, lastId)
   console.log('pokemon data received')
@@ -41,17 +52,6 @@ const exportDataRange = async (firstId, lastId, arrayExclusives, filename) => {
   } catch (err) {
     console.error(err)
   }
-}
-
-async function main() {
-  //Best to run these in async since PokeAPI seems to throttle parallel requests
-  await exportDataRange(1, 151, fireRedExclusives, './out/firered-pokedex.json')
-  await exportDataRange(1, 151, leafGreenExclusives, './out/leafgreen-pokedex.json')
-}
-
-//Run main if this file was run directly from Node.js
-if (require.main === module) {
-  main();
 }
 
 module.exports = { exportDataRange }
