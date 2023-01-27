@@ -1,5 +1,7 @@
 # Tools for Pokemon Team Planner
 
+![pokemon team planner logo](readme-assets/pokemon-team-planner-logo-outlined.png)
+
 ## Data exporter for PokeAPI to generate JSON Pokemon data for Pokemon games
 
 With this little data exporter tool you can fetch a range of pokemon (e.g. 1-151) from PokeAPI, transform the data and save it as a JSON-file (see [out/firered-pokedex.json](out/firered-pokedex.json)). The only manually gathered data required is a list of exclusive pokemon in a game version (see [data/fireRedExclusives.json](data/fireRedExclusives.json)).
@@ -17,6 +19,10 @@ async function main() {
   await exportDataRange(1, 151, leafGreenExclusives, './out/leafgreen-pokedex.json')
 }
 ```
+
+## Contributing
+
+For now this is a Full Stack course project of mine. Maybe in the future I could accept contributions. Feel free to send me ideas or feedback though! :)
 
 ## Known issues (work in progress)
 
